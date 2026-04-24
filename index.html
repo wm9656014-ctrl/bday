@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sister Birthday Card 💖</title>
+
+<style>
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("BC.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* screens */
+.screen{
+    display:none;
+    width:380px;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    position:relative;
+    z-index:2;
+}
+
+.active{
+    display:block;
+}
+
+h1{
+    color:#ff4d88;
+}
+
+p{
+    color:#555;
+    line-height:1.6;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d88;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#e63e75;
+}
+
+/* fireworks hearts */
+.firework{
+    position:absolute;
+    font-size:25px;
+    animation:boom 2s linear forwards;
+    z-index:1;
+}
+
+@keyframes boom{
+    0%{
+        transform:translateY(0) scale(0.5);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-300px) scale(1.5);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Screen 1 -->
+<div id="screen1" class="screen active">
+    <h1>💖 Happy Birthday 💖</h1>
+    <p>To my lovely sister 🎂✨</p>
+    <button onclick="nextScreen(1,2)">Next 🎁</button>
+</div>
+
+<!-- Screen 2 -->
+<div id="screen2" class="screen">
+    <h1>My Dear Sister 💕</h1>
+    <p>
+    may allah always keep you happy 🌸
+    </p>
+    <button onclick="nextScreen(2,3)">Next 💌</button>
+</div>
+
+<!-- Screen 3 -->
+<div id="screen3" class="screen">
+    <h1>Stay Happy Always ❤️</h1>
+    <p>
+        May your life be filled with love,  
+        laughter, success, and endless smiles ✨
+    </p>
+    <p><b> POOKIE CHURAIL 🎀</b></p>
+    <button onclick="startFireworks()">Celebrate 🎆</button>
+</div>
+
+<script>
+function nextScreen(current,next){
+    document.getElementById("screen"+current).classList.remove("active");
+    document.getElementById("screen"+next).classList.add("active");
+}
+
+function startFireworks(){
+    setInterval(() => {
+        let fire = document.createElement("div");
+        fire.className = "firework";
+        fire.innerHTML = ["💖","✨","🎆","🎉","🎀"][Math.floor(Math.random()*5)];
+        
+        fire.style.left = Math.random() * 100 + "vw";
+        fire.style.top = Math.random() * 100 + "vh";
+
+        document.body.appendChild(fire);
+
+        setTimeout(() => {
+            fire.remove();
+        }, 2000);
+
+    }, 300);
+}
+</script>
+
+</body>
+</html>
